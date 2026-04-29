@@ -7,6 +7,7 @@ export type Todo = {
   title: string;
   status: TodoStatus;
   createdAt: number;
+  dueDate?: string;
 };
 
 export const TODO_STATUS_LABELS: Record<TodoStatus, string> = {

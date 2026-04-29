@@ -13,7 +13,8 @@ function isTodo(value: unknown): value is Todo {
     typeof v.id === "string" &&
     typeof v.title === "string" &&
     typeof v.createdAt === "number" &&
-    isTodoStatus(v.status)
+    isTodoStatus(v.status) &&
+    (v.dueDate === undefined || typeof v.dueDate === "string")
   );
 }
 

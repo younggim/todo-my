@@ -8,7 +8,7 @@ import type { Todo, TodoStatus } from "@/types/todo";
 type UseTodosReturn = {
   todos: Todo[];
   hydrated: boolean;
-  addTodo: (title: string) => void;
+  addTodo: (title: string, dueDate?: string) => void;
   removeTodo: (id: string) => void;
   moveTodo: (id: string, status: TodoStatus) => void;
 };
@@ -26,7 +26,7 @@ export function useTodos(): UseTodosReturn {
     if (hydrated) saveTodos(todos);
   }, [todos, hydrated]);
 
-  const addTodo = React.useCallback((title: string) => {
+  const addTodo = React.useCallback((title: string, dueDate?: string) => {
     const trimmed = title.trim();
     if (!trimmed) return;
     setTodos((prev) => [
@@ -36,6 +36,7 @@ export function useTodos(): UseTodosReturn {
         title: trimmed,
         status: "todo",
         createdAt: Date.now(),
+        ...(dueDate ? { dueDate } : {}),
       },
     ]);
   }, []);

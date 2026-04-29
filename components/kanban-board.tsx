@@ -39,6 +39,8 @@ export function KanbanBoard() {
           />
         ))}
       </div>
+
+      <AddTodoForm onAdd={addTodo} />
     </main>
   );
 }

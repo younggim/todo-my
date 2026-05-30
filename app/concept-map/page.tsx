@@ -1,9 +1,10 @@
+
 'use client';
 
 import * as React from 'react';
 import { KantConceptMap } from '@/components/kant-concept-map';
 import { PhilosopherChat } from '@/components/philosopher-chat';
-import { conceptNodes, type ConceptNode } from '@/lib/concept-map-data';
+import { conceptNodes, conceptEdges, type ConceptNode } from '@/lib/concept-map-data';
 
 export default function ConceptMapPage() {
   const [selectedNode, setSelectedNode] = React.useState<ConceptNode | null>(null);
@@ -67,14 +68,14 @@ export default function ConceptMapPage() {
               <p className="mb-2 text-xs font-semibold text-gray-500">연결된 개념</p>
               <div className="space-y-1.5">
                 {conceptNodes
-                  .filter((n) => n.id !== selectedNode.id)
-                  .filter((n) =>
-                    (n.id === selectedNode.id
-                      ? false
-                      : false) ||
-                    (n.tier <= selectedNode.tier + 1)
-                  )
-                  .filter((_, i) => i < 5)
+                  .filter((n) => {
+                    if (n.id === selectedNode.id) return false;
+                    return conceptEdges.some(
+                      (e) =>
+                        (e.source === selectedNode.id && e.target === n.id) ||
+                        (e.target === selectedNode.id && e.source === n.id)
+                    );
+                  })
                   .map((n) => (
                     <button
                       key={n.id}

@@ -21,6 +21,7 @@ Ideate → Define → Sketch → Plan → Build → Compound
 - Conventional 규칙을 따르고, feature 단위로 커밋한다.
 
 ## Testing
+- Test를 2회 진행하고, Test 결과를 readme.md에 저장하세요
 
 ### 원칙
 **수용 기준을 정의한다. 검증될 때까지 반복한다.**

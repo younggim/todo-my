@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "My Todo",
-  description: "나의 라이프에 필요한 어플리케이션 입니다.",
+  description: "라이프에 필요한 어플리케이션 입니다.",
 };
 
 export default function RootLayout({
